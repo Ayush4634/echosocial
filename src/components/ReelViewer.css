@@ -1,0 +1,430 @@
+/* Localized Overlay Strategy */
+.reel-viewer-backdrop {
+    position: fixed;
+    /* Viewport-scoped */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    /* Darker for better focus */
+    backdrop-filter: blur(20px);
+    /* Deeper blur for premium feel */
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 10000;
+    /* Above everything else */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+}
+
+.reel-viewer-container {
+    position: relative;
+    width: 100%;
+    max-width: none;
+
+    aspect-ratio: 1 / 2;
+    /* phone lock */
+
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+
+    transform-origin: center center;
+    pointer-events: auto;
+}
+
+/* Internal Close Button - Guaranteed Visibility */
+.reel-close-btn-internal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 35px;
+    height: 35px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10002;
+    /* Top of everything */
+    transition: all 0.2s ease;
+}
+
+.reel-close-btn-internal:hover {
+    background: rgba(0, 0, 0, 0.6);
+    transform: rotate(90deg);
+}
+
+/* Play/Pause Overlay Animation */
+.play-pause-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Use translate here, but framer motion handles the animation transform */
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.play-icon-shape.play {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 25px solid #fff;
+    /* margin-left: removed for strict centering, trust flexbox/transform */
+}
+
+.play-icon-shape.pause {
+    width: 20px;
+    height: 30px;
+    border-left: 6px solid #fff;
+    border-right: 6px solid #fff;
+    box-sizing: content-box;
+}
+
+/* Persistent Play Indicator (when paused) */
+.center-play-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Strict Center */
+    z-index: 15;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.play-triangle {
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 35px solid rgba(255, 255, 255, 0.9);
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+}
+
+/* On mobile, close button might need to be inside or top-right of screen */
+@media (max-width: 600px) {
+    .reel-close-btn {
+        right: 20px;
+        top: 20px;
+    }
+
+    .reel-viewer-container {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        border-radius: 0;
+    }
+}
+
+.reel-phone-frame {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #000;
+    overflow: hidden;
+    /* rounded corners handled by container usually, but recursive doesn't hurt */
+    border-radius: inherit;
+}
+
+.reel-video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Mute Button - Moved to Top Left to avoid overlapping with Close Button */
+.reel-mute-btn {
+    position: absolute;
+    top: 20px !important;
+    left: 20px !important;
+    /* Force Left Position */
+    right: auto !important;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10003;
+    /* Higher than others */
+    transition: background 0.2s ease;
+}
+
+.reel-mute-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+
+/* UI Overlay mimicking Instagram */
+.reel-viewer-ui {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    pointer-events: none;
+    /* Let clicks pass through to video/container unless hitting actionable items */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-sizing: border-box;
+}
+
+.reel-viewer-right {
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    pointer-events: auto;
+}
+
+.ui-action-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.ui-icon {
+    color: #fff;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.ui-icon:active {
+    transform: scale(0.9);
+}
+
+.ui-text {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.spacer {
+    height: 10px;
+}
+
+.ui-album-art {
+    width: 30px;
+    height: 30px;
+    background: #333;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    background-image: url('https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=1887&auto=format&fit=crop');
+    /* Placeholder or passed prop */
+    background-size: cover;
+}
+
+.reel-viewer-bottom {
+    margin-right: 60px;
+    /* Space for right actions */
+    pointer-events: auto;
+    color: #fff;
+    text-align: left;
+}
+
+.ui-user-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.ui-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ddd;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.ui-username {
+    font-weight: 600;
+    font-size: 14px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.ui-follow-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: #fff;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.ui-caption {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.ui-more {
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+
+.ui-audio-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.ui-audio-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+/* Loading Spinner */
+.reel-loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.spinner-icon {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================
+   RESPONSIVE OPTIMIZATIONS
+   ========================================= */
+
+/* Small Laptops (769px to 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .reel-viewer-container {
+        max-width: 300px;
+        height: 90vh;
+        max-height: 720px;
+        box-shadow: 0 32px 80px rgba(0, 0, 0, 0.75);
+        /* Balanced for small laptops */
+    }
+}
+
+/* Medium/Large Laptops (1025px to 1440px) - Covers most 13/14 inch laptops */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+    .reel-viewer-container {
+        max-width: 330px;
+        height: 100vh;
+        max-height: 820px;
+        box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+    }
+}
+
+/* Extra Large Screens (1441px and up) */
+@media screen and (min-width: 1441px) {
+    .reel-viewer-container {
+        max-width: 400px;
+        height: 100vh;
+        max-height: 950px;
+        box-shadow: 0 50px 120px rgba(0, 0, 0, 0.9);
+    }
+}
+
+/* =========================================
+   CLEAN MODE OVERRIDES (Mobile Portrait Logic)
+   ========================================= */
+.reel-viewer-container.clean-mode {
+    aspect-ratio: 16 / 9;
+    height: auto !important;
+    /* Override fixed heights */
+    width: 100%;
+    /* Default to full width of container */
+    max-width: 500px;
+    /* Cap width for larger screens */
+    border-radius: 12px;
+}
+
+.reel-viewer-container.clean-mode.landscape-mode {
+    aspect-ratio: 16 / 9;
+    max-width: 90vw;
+    /* Wider allowed in landscape */
+}
+
+/* Specific Mobile override to beat the 100% height rule */
+@media (max-width: 600px) {
+    .reel-viewer-container.clean-mode {
+        height: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 0;
+        /* Flush on mobile if desired, or keep radius */
+    }
+
+    /* Roate 90 degrees for immersive landscape on portrait phones */
+    .reel-viewer-container.clean-mode.landscape-mode {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        /* Width becomes Height of screen, Height becomes Width of screen */
+        width: 100vh !important;
+        height: 100vw !important;
+        max-width: none !important;
+        max-height: none !important;
+        aspect-ratio: 16 / 9;
+        /* Combine centering and rotation */
+        transform: translate(-50%, -50%) rotate(90deg) !important;
+        z-index: 10001;
+    }
+}

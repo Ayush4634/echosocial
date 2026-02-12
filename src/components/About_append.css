@@ -1,0 +1,10 @@
+/* ===============================================
+   LAPTOP/DESKTOP ENHANCEMENTS (>= 1024px)
+   =============================================== */
+@media (min-width: 1024px) {
+    .profile-circle-wrapper {
+        width: 210px !important;
+        height: 210px !important;
+        /* Slight increase from 150px/180px */
+    }
+}

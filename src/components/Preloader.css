@@ -1,0 +1,53 @@
+.preloader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* Premium dark glass effect */
+    background-color: rgba(5, 5, 5, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.greeting-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.greeting-text {
+    font-family: 'Inter', sans-serif;
+    /* BALANCED FLUID FONT: Scaling from 2rem up to 7rem max for better rhythm */
+    font-size: clamp(2rem, 4.5vw, 7rem);
+    font-weight: 500;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* FLUID GAP: Proportional to font size */
+    gap: 0.4em;
+}
+
+.greeting-dot {
+    display: inline-block;
+    /* FLUID DOT SIZE: Historically 12px, now matches text scale */
+    width: 0.15em;
+    height: 0.15em;
+    background-color: #fff;
+    border-radius: 50%;
+}

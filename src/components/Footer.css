@@ -1,0 +1,269 @@
+/* --- GLASS FOOTER --- */
+.glass-footer {
+    width: 100%;
+    background: radial-gradient(circle at 50% 0%, #081021 0%, #000000 80%);
+    /* Midnight Blue Radial Glow */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    /* Subtle separation */
+    color: #ffffff;
+    padding: 0;
+    position: relative;
+    z-index: 10;
+    /* margin-top: 4rem; Removed margin-top to let layout handle it, or keep it if needed. Keeping for now but responsive to flow. */
+    margin-top: 0;
+    overflow: hidden;
+}
+
+.footer-glass-container {
+    padding: 3rem 2rem 2rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+
+    /* Premium Glass Effect Overlay */
+    /* Remove inner bg so full gradient shows */
+    background: transparent;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.brand-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 320px;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-brand-logo {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.social-link {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-3px);
+}
+
+.footer-col-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.footer-links-list,
+.footer-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.footer-links-list a,
+.footer-contact-list a,
+.footer-contact-list span {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    line-height: 1.5;
+}
+
+.footer-links-list a:hover,
+.footer-contact-list a:hover {
+    color: #fff;
+    padding-left: 5px;
+}
+
+.services-list a:hover {
+    color: rgba(255, 255, 255, 0.6);
+    padding-left: 0;
+}
+
+.footer-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    margin-bottom: 1.5rem;
+}
+
+.footer-bottom {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 0;
+    /* Add some padding for the absolute element breathing room */
+}
+
+.created-by-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.created-by-text:hover {
+    color: #fff;
+    cursor: default;
+}
+
+.footer-bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.footer-bottom-links a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+    color: #fff;
+}
+
+.separator {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.8rem;
+    pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+    .footer-top-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .footer-nav {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .footer-glass-container {
+        padding: 3rem 1.5rem 1.5rem 1.5rem;
+        /* Reduced top padding from 5rem */
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        /* Reduced from 2.5rem */
+        text-align: center;
+        margin-bottom: 2.5rem;
+        /* Reduced from 4rem */
+    }
+
+    .brand-col {
+        margin: 0 auto;
+        align-items: center;
+        gap: 1rem;
+        /* Reduced from 1.5rem */
+    }
+
+    .footer-brand-logo {
+        height: 85px;
+        /* Slight increase from 70px */
+    }
+
+    .footer-col-title {
+        font-size: 1rem;
+        /* Slightly smaller */
+        margin-bottom: 0.8rem;
+        /* Reduced from 1rem */
+    }
+
+    .footer-links-list,
+    .footer-contact-list {
+        gap: 0.6rem;
+        /* Tightened from 1rem */
+    }
+
+    .footer-links-list a,
+    .footer-contact-list a,
+    .footer-contact-list span {
+        font-size: 0.9rem;
+        /* Slightly smaller */
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1.2rem;
+        /* Reduced from 1.5rem */
+        text-align: center;
+        padding: 0.5rem 0;
+    }
+
+    .created-by-text {
+        position: static;
+        transform: none;
+        order: 2;
+        margin: 0.2rem 0;
+    }
+
+    .copyright-text {
+        font-size: 0.8rem;
+    }
+
+    .footer-bottom-links {
+        justify-content: center;
+        gap: 0.6rem;
+    }
+
+    .footer-bottom-links a {
+        font-size: 0.8rem;
+    }
+}

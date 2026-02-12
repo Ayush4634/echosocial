@@ -1,0 +1,357 @@
+.event-project-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+    /* Align with other sections/left layout */
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    background-color: transparent;
+    /* Changed */
+}
+
+/* Background Image */
+.event-project-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/assets/concert-bg-final.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    /* Adjusted for new image to center the singer */
+    /* Focus slightly higher than center to catch the face */
+    z-index: -1;
+}
+
+.event-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Adjusted gradient to be more transparent on the right to show the person */
+    background:
+        linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0) 70%),
+        linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 40%);
+    z-index: 0;
+}
+
+.event-content-container {
+    max-width: 1200px;
+    z-index: 2;
+    padding-right: 2rem;
+    padding-top: 16rem;
+    /* Shift content down */
+}
+
+.mediateam-logo {
+    position: absolute;
+    top: 5rem;
+    right: 4rem;
+    width: 200px;
+    /* Adjust size as needed */
+    z-index: 10;
+}
+
+.mediateam-logo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
+}
+
+.event-main-title {
+    font-size: 3.5rem;
+    /* Slightly smaller to prevent wrapping */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.event-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1rem;
+    color: #ccc;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.event-meta-row .dot {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.event-sub-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-style: normal;
+    /* Thin/Regular weight as per reference */
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.event-description.desktop-only {
+    display: block;
+}
+
+.event-description.mobile-only {
+    display: none;
+}
+
+.event-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ccc;
+    max-width: 600px;
+    margin-bottom: 2.5rem;
+}
+
+.event-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-remind {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-remind:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.btn-info {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-info:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+/* Tablet & Mobile Responsiveness */
+@media (max-width: 1024px) {
+    .event-project-section {
+        padding: 0 6% 2rem 6%;
+        /* Shifted down by reducing bottom padding */
+        justify-content: flex-end;
+        align-items: flex-end;
+        height: 100vh !important;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    .event-project-section::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 80%;
+        /* Increased gradient height for better text readability */
+        background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 40%, transparent 100%);
+        z-index: -1;
+    }
+
+    .event-project-section::before {
+        background-image: url('/assets/concert-bg-mobile-v2.jpg') !important;
+        background-position: 60% -5% !important;
+        background-size: cover !important;
+        z-index: -2;
+    }
+
+    /* Cinematic Bottom Gradient - Reusing overlay */
+    .event-bg-overlay {
+        background: linear-gradient(to top,
+                rgba(0, 0, 0, 1) 0%,
+                rgba(0, 0, 0, 1) 20%,
+                rgba(0, 0, 0, 0.7) 45%,
+                transparent 100%) !important;
+        /* Pulled solid black down to 20% so it's below the heading */
+        z-index: 0;
+    }
+
+    .event-content-container {
+        padding: 0;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        z-index: 2;
+        margin-bottom: 1rem;
+        /* Lowered from 2rem */
+    }
+
+    .event-main-title {
+        font-size: 1.8rem;
+        /* Further reduced size */
+        line-height: 1.1;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        max-width: 85%;
+        /* Force wrapping */
+    }
+
+    .event-meta-row {
+        justify-content: center;
+        font-size: 0.65rem;
+        /* Smaller to ensure single line fit */
+        gap: 0.4rem;
+        margin-bottom: 0.8rem;
+        color: #e5e5e5;
+        flex-wrap: nowrap;
+        /* Force single line */
+        white-space: nowrap;
+    }
+
+    .event-sub-title {
+        display: none;
+    }
+
+    .event-description.desktop-only {
+        display: none;
+    }
+
+    .event-description.mobile-only {
+        display: -webkit-box;
+    }
+
+    .event-description {
+        font-size: 0.85rem;
+        /* Slightly smaller description */
+        line-height: 1.4;
+        margin-bottom: 1.2rem;
+        max-width: 95%;
+        color: #ddd;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .event-buttons {
+        flex-direction: row;
+        gap: 0.8rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Premium "Play" Button Style */
+    .btn-remind {
+        background-color: #fff;
+        color: #000;
+        border-radius: 6px;
+        padding: 0.8rem 1rem;
+        font-weight: 700;
+        font-size: 0.95rem;
+        width: 48%;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        border: none;
+        letter-spacing: -0.2px;
+    }
+
+    .btn-remind svg {
+        fill: #000;
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Premium Glassmorphism Meta/Info Button Style */
+    .btn-info {
+        background-color: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        border-radius: 6px;
+        padding: 0.8rem 1rem;
+        font-weight: 700;
+        font-size: 0.95rem;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        width: 48%;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        letter-spacing: -0.2px;
+    }
+
+    .mediateam-logo {
+        top: 2rem;
+        /* Moved further upward */
+        right: 1rem;
+        /* Pushed closer to edge */
+        width: 125px;
+        /* Slightly decreased */
+    }
+}
+
+@keyframes livePulse {
+    0% {
+        text-shadow: 0 0 5px rgba(229, 9, 20, 0.4);
+        opacity: 1;
+    }
+
+    50% {
+        text-shadow: 0 0 20px rgba(229, 9, 20, 0.8), 0 0 10px rgba(229, 9, 20, 0.6);
+        opacity: 0.9;
+    }
+
+    100% {
+        text-shadow: 0 0 5px rgba(229, 9, 20, 0.4);
+        opacity: 1;
+    }
+}
+
+.live-text {
+    color: #E50914 !important;
+    display: inline-block;
+    animation: livePulse 2s infinite ease-in-out;
+}
+
+
+/* 2. Portrait Tablet */
+@media screen and (min-width: 768px) and (max-width: 899px) {
+
+    .event-main-title {
+        font-size: 2.8rem;
+        /* Further reduced size */
+        line-height: 1.1;
+        margin-bottom: 0.8rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        max-width: 85%;
+        /* Force wrapping */
+    }
+
+}

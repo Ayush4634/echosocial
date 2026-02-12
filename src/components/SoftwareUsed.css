@@ -1,0 +1,321 @@
+.software-container {
+    width: 100%;
+    min-height: 80vh;
+    background-color: #0d0d0d;
+    /* Fallback */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+.software-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/software_bg_v2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.software-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* New Header Styles */
+.social-design-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-text {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-size: 5rem;
+    font-weight: 900;
+    color: #8b5cf6;
+    /* Purple color */
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: initial;
+    margin: 0;
+    text-transform: none;
+    letter-spacing: -2px;
+    z-index: 1;
+    transform: none;
+}
+
+.media-design-text {
+    font-family: 'Pacifico', cursive;
+    font-size: 5rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    margin: 0;
+    color: #fefefe;
+    /* Cream/White color */
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: initial;
+    margin-left: -20px;
+    /* Slight overlap */
+    z-index: 2;
+    transform: rotate(-5deg) translateY(10px);
+}
+
+.software-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+}
+
+.software-row {
+    background-color: #000;
+    border: 1px solid #333;
+    border-radius: 50px;
+    /* Pill shape */
+    padding: 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+.software-label {
+    width: 210px;
+    flex-shrink: 0;
+}
+
+.software-label h3 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #eee;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.software-divider {
+    width: 1px;
+    height: 60px;
+    background-color: #444;
+    margin: 0 2rem;
+    flex-shrink: 0;
+}
+
+.software-icons {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex-grow: 1;
+    justify-content: flex-end;
+    /* Icons to right */
+}
+
+/* Adobe CSS Icons */
+.adobe-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: 'Inter', sans-serif;
+    /* Colors set inline */
+}
+
+.software-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 12px;
+    /* Consistency */
+}
+
+@media (max-width: 1024px) {
+    .software-grid {
+        gap: 1.25rem;
+    }
+
+    .software-row {
+        flex-direction: column;
+        border-radius: 15px;
+        padding: 1.25rem 1rem;
+        gap: 0.8rem;
+        width: 92%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .software-label {
+        width: 100%;
+        text-align: center;
+    }
+
+    .software-label h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .software-divider {
+        width: 60%;
+        height: 1px;
+        margin: 0 auto;
+        background-color: #333;
+    }
+
+    .software-icons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.25rem;
+        gap: 1.25rem;
+        max-width: 240px;
+        /* Default mobile width */
+        margin: 0 auto;
+    }
+
+    /* Tablet Override (> 500px): Allow full width for icons */
+    @media (min-width: 500px) {
+        .software-icons {
+            max-width: 100%;
+            gap: 2rem;
+        }
+
+        .software-row {
+            max-width: 600px;
+        }
+
+        /* Larger sizes for Tablet */
+        .software-label h3 {
+            font-size: 2.5rem;
+            /* Significantly increased */
+        }
+
+        .adobe-icon,
+        .software-img {
+            width: 75px;
+            /* Mega-Tablet Size */
+            height: 75px;
+            font-size: 2rem;
+        }
+    }
+
+    .adobe-icon,
+    .software-img {
+        width: 48px;
+        height: 48px;
+        font-size: 1.4rem;
+        border-radius: 10px;
+    }
+
+    .social-text,
+    .media-design-text {
+        font-size: 2.2rem;
+    }
+
+    .social-design-header {
+        flex-direction: row;
+        /* Force single line */
+        gap: 8px;
+        margin-bottom: 2rem;
+        align-items: center;
+        /* Vertically center aligned */
+    }
+
+    .media-design-text {
+        margin-left: 0;
+        margin-top: 0;
+        /* Reset stack adjustments */
+        transform: rotate(-5deg) translateY(4px);
+        /* Slight tilt adjustment */
+    }
+}
+
+/* ===============================================
+   Thinking larger screens (13, 14, 15 inch +)
+   =============================================== */
+@media (min-width: 1280px) {
+    .software-container {
+        width: 100%;
+        min-height: 100vh;
+        background-color: #0d0d0d;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4rem 2rem;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+    }
+
+}
+
+@media (min-width: 769px) {
+    .software-container {
+        width: 100%;
+        min-height: 100vh;
+        background-color: #0d0d0d;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4rem 2rem;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+    }
+}
+
+/* 14-inch Laptop (1280px and up) */
+@media (min-width: 1280px) {
+    .software-container {
+        min-height: 110vh;
+        /* Slightly smaller for 14-inch screens */
+    }
+}
+
+/* 15.6-inch Laptop and larger (1500px and up) */
+@media (min-width: 1500px) {
+    .software-container {
+        min-height: 100vh;
+        /* Full height for larger screens */
+    }
+}
+
+
+/* 2. Portrait Tablet */
+@media screen and (min-width: 768px) and (max-width: 899px) {
+    .software-container {
+        height: 70vh !important;
+        max-height: none;
+        flex-shrink: 0;
+        min-height: 0;
+    }
+}

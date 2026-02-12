@@ -1,0 +1,231 @@
+.privacy-page {
+    /* Ensure enough top padding for fixed navbar */
+    padding-top: 120px;
+    min-height: 100vh;
+    background-color: #fafafa;
+    /* Slightly off-white for premium feel */
+    color: #333;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    z-index: 5;
+    padding-bottom: 4rem;
+    /* Spacing before footer */
+}
+
+.show-on-mobile {
+    display: none;
+}
+
+.hide-on-mobile {
+    display: inline;
+}
+
+@media (max-width: 1024px) {
+    .show-on-mobile {
+        display: block;
+    }
+
+    .hide-on-mobile {
+        display: none;
+    }
+}
+
+.privacy-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    padding: 0.5rem 0;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+    color: #000;
+    transform: translateX(-5px);
+}
+
+.privacy-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.privacy-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.effective-date {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.privacy-divider-line {
+    width: 150px;
+    height: 3px;
+    background-color: #000000;
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+.privacy-intro {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 3rem;
+    text-align: left;
+}
+
+.privacy-section {
+    margin-bottom: 3rem;
+}
+
+.privacy-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.privacy-section ul {
+    list-style: none;
+    /* Custom bullets */
+    padding-left: 0.5rem;
+}
+
+.privacy-section ul li {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.privacy-section ul li::before {
+    content: "•";
+    color: #003366;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Specific styling for plain list in contact if desired */
+.contact-list-plain li {
+    list-style: none;
+    padding-left: 0;
+}
+
+.contact-list-plain li::before {
+    content: none;
+}
+
+/* Dark Mode handling if needed, though simpler is better for now */
+@media (max-width: 768px) {
+    .privacy-page {
+        padding-top: 85px;
+        /* Minimized top padding */
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        /* strict horizontal containment */
+        box-sizing: border-box;
+    }
+
+    .privacy-container {
+        padding: 0 1.25rem;
+        /* Safe margin from edges */
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .back-button {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    .privacy-header {
+        margin-bottom: 1.5rem;
+        text-align: center;
+        /* Centered as requested */
+        width: 100%;
+    }
+
+    .privacy-title {
+        font-size: 1.35rem;
+        /* Nano-Compact Title */
+        line-height: 1.2;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+
+    .effective-date {
+        font-size: 0.8rem;
+        margin-bottom: 0.8rem;
+        color: #777;
+    }
+
+    .privacy-divider-line {
+        width: 50px;
+        /* Minimal divider */
+        margin: 0.5rem auto;
+        /* Centered divider */
+        height: 2px;
+    }
+
+    .privacy-intro {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        color: #444;
+    }
+
+    .privacy-section {
+        margin-bottom: 1.5rem;
+        width: 100%;
+    }
+
+    .privacy-section h2 {
+        font-size: 1.05rem;
+        /* Scaled down heading */
+        margin-bottom: 0.6rem;
+        padding-bottom: 0.4rem;
+        font-weight: 600;
+        line-height: 1.3;
+    }
+
+    .privacy-section ul {
+        padding-left: 0.5rem;
+    }
+
+    .privacy-section ul li {
+        font-size: 0.85rem;
+        /* Compact body text */
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
+        padding-left: 1rem;
+    }
+}

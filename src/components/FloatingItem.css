@@ -1,0 +1,138 @@
+.floating-item {
+    position: absolute;
+    cursor: grab;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    user-select: none;
+    /* TOUCH OPTIMIZATION from user sample */
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.floating-item:active {
+    cursor: grabbing;
+}
+
+.item-label {
+    margin-top: 8px;
+    /* REFINED FLUID FONT: vmin ensures better landscape/portrait balance */
+    font-size: clamp(0.6rem, 1.5vmin, 1.2rem);
+    padding: 0.2em 0.5em;
+    background: transparent;
+    border-radius: 4px;
+    /* ELLIPSIS PROTECTION from user sample */
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: min(200px, 25vw);
+}
+
+/* FOLDER STYLES */
+.folder-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.folder-body {
+    /* REFINED FLUID FOLDER: Using 8vmin for consistency across orientations */
+    width: clamp(85px, 8vmin, 250px);
+    height: auto;
+    /* Allow it to hug the icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Add blur effect to simulate 'blur folder element' if that's what user meant, 
+       or just styling the folder itself to look softer */
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
+    margin-bottom: -5px;
+    /* Pull label closer */
+}
+
+.folder-content .item-label {
+    margin-top: 0px !important;
+}
+
+.default-folder-icon {
+    /* FLUID ICON SIZE: Increased to 75% for better visibility */
+    width: 75%;
+    height: auto;
+    color: #79A0C8;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* IMAGE STYLES */
+.image-content {
+    background: white;
+    padding: 8px 8px 24px 8px;
+    /* Polaroid style */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    transform-origin: center;
+    /* REFINED FLUID POLAROID: Matches folder scale logic (min 85px) */
+    width: clamp(85px, 8vmin, 250px);
+}
+
+.image-content.no-bg {
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+    width: auto;
+}
+
+.image-content.no-bg img {
+    border-radius: 0;
+    /* FLUID NO-BG IMAGE WIDTH: Min bumped to 95px */
+    width: clamp(95px, 6vw, 300px);
+    object-fit: contain;
+}
+
+.image-content img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 2px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.image-content .item-label {
+    display: none;
+    /* Hide label for polaroids usually, or show below */
+}
+
+/* ICON STYLES */
+.icon-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon-bg {
+    /* REFINED FLUID ICON BOX: Consistent 6vmin across orientations */
+    width: clamp(45px, 6vmin, 120px);
+    height: clamp(45px, 6vmin, 120px);
+    background: white;
+    /* FLUID BORDER RADIUS: 22.5% maintains the "App Icon" squircle shape at any size */
+    border-radius: 22.5%;
+    /* iOS style rounded rect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    color: #333;
+    /* FLUID SUB-ICONS: Scale inside the white box */
+}
+
+.icon-bg svg,
+.icon-bg img {
+    /* FLUID SUB-ICONS: Increased from 50% to 70% for much better visibility */
+    width: 70% !important;
+    height: 70% !important;
+    object-fit: contain;
+}

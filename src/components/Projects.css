@@ -1,0 +1,2133 @@
+.projects-container {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    /* Anchor for absolute modals */
+    /* High-quality Grid Background - REMOVED */
+    background-color: transparent;
+    /* background-image removed */
+    color: #111;
+    padding: 5rem 5% 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.projects-header {
+    text-align: center;
+    margin: 0 auto 0 auto;
+    /* CENTERED */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.highlight-script {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    /* Fluid: 2.5rem mobile -> 3.5rem desktop */
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    vertical-align: middle;
+    margin-left: 15px;
+    color: #555;
+}
+
+.serif-highlight {
+    font-family: 'Playfair Display', serif;
+    font-style: normal;
+    font-weight: 400;
+    /* Fluid: 2.2rem mobile -> 4rem desktop */
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    /* Exact match to featured-work-title */
+    color: #1a1a1a;
+    margin-left: 10px;
+    letter-spacing: -1.5px;
+    text-transform: none;
+    vertical-align: 0;
+}
+
+/* Project-specific Container Color Logic (Desktop & Mobile) */
+#cerebrum-project .reels-container {
+    background: rgba(255, 140, 0, 0.1);
+    /* Transparent Orange */
+    border: 1px solid rgba(255, 140, 0, 0.1);
+}
+
+#hyatt-project .reels-container {
+    background: rgba(128, 0, 0, 0.12);
+    /* Modern Transparent Maroon */
+    border: 1px solid rgba(128, 0, 0, 0.1);
+}
+
+#whitford-project .reels-container {
+    background: rgba(75, 0, 130, 0.1);
+    /* Transparent Indigo */
+    border: 1px solid rgba(75, 0, 130, 0.1);
+}
+
+.featured-work-title {
+    font-family: 'Inter', sans-serif;
+    /* Fluid typography: 2.2rem at mobile -> 4rem at desktop */
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    margin: 0;
+    color: #1a1a1a;
+}
+
+.projects-filter {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-btn {
+    background: rgba(0, 0, 0, 0.08);
+    /* Slightly transparent black as requested */
+    border: 1px solid transparent;
+    padding: 0.75rem 1.6rem;
+    border-radius: 14px;
+    /* Modern soft rectangle */
+    font-size: 0.95rem;
+    color: #333;
+    /* Slightly darker text for contrast */
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform, background;
+}
+
+.filter-btn:hover {
+    background: rgba(0, 0, 0, 0.12);
+    /* Darker transparent black on hover */
+    transform: translateY(-2px);
+    color: #111;
+}
+
+.filter-btn.active {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #1a1a1a;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding-left: 1.4rem;
+    padding-right: 1.6rem;
+}
+
+/* Add Sparkle Icon to Active Tag */
+.filter-btn.active::before {
+    content: "✦";
+    margin-right: 8px;
+    font-size: 1.1em;
+    color: #fff;
+    /* Optional: distinct color like gold #FFD700 if desired, but white is clean */
+    animation: spin-pulse 3s infinite linear;
+}
+
+@keyframes spin-pulse {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* Project Showcase Layout */
+.project-showcase {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 5rem;
+    width: 100%;
+    max-width: 1250px;
+    /* REFINED: Balanced width for 14/15" screens */
+    margin: 0 auto;
+    /* FORCED CENTERING */
+    margin-top: 0;
+}
+
+.project-info {
+    flex: 0 0 320px;
+    /* FIXED WIDTH: Ensures predictable space for reels */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 5rem;
+}
+
+.project-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin: 0;
+    color: #1a1a1a;
+    line-height: 1.1;
+    text-transform: uppercase;
+    white-space: nowrap;
+    /* Forces title to be on one line */
+}
+
+.project-date {
+    font-size: 1rem;
+    color: #666;
+    margin: -1rem 0 0 0;
+    font-weight: 600;
+}
+
+.project-tags {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: nowrap;
+    /* Forces tags to be on one line */
+    overflow-x: auto;
+    /* Adds scroll if strictly needed on very small screens */
+}
+
+.tag {
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    border: none;
+    /* Clean, tag-like appearance */
+}
+
+/* Global Pastel Colors for Tags */
+.tag:nth-child(1) {
+    background-color: #E9E4FF;
+    /* Soft Purple */
+    color: #444;
+}
+
+.tag:nth-child(2) {
+    background-color: #E4F9E4;
+    /* Soft Green */
+    color: #444;
+}
+
+.tag:nth-child(3) {
+    background-color: #E4F3FF;
+    /* Soft Blue */
+    color: #444;
+}
+
+.tag:nth-child(4) {
+    background-color: #FFEDFA;
+    /* Soft Rose */
+    color: #444;
+}
+
+.project-description {
+    font-size: 1.1rem;
+    line-height: 1.85;
+    /* Increased from 1.7 for better readability */
+    color: #444;
+    max-width: 500px;
+    font-weight: 400;
+}
+
+.project-description p {
+    margin-bottom: 1.5rem;
+    /* Generous paragraph spacing for desktop */
+    text-align: justify;
+}
+
+/* Visual Side - Reels Showcase */
+.project-visual {
+    flex: 0 0 auto;
+    /* Prevent growing to fill space, stick to content size */
+    background: transparent;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    position: relative;
+    margin-top: 5rem;
+}
+
+.hover-hint {
+    position: absolute;
+    bottom: 25px;
+    /* left: 50%; */
+    transform: translateX(-50%);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #666;
+    /* Darker for better visibility against container tint */
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: float-soft 4s ease-in-out infinite;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.8;
+    z-index: 5;
+}
+
+.hover-hint svg {
+    width: 18px;
+    height: 18px;
+    opacity: 0.8;
+}
+
+.hover-hint::before,
+.hover-hint::after {
+    content: "";
+    width: 30px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+@keyframes float-soft {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translateY(-8px);
+        opacity: 0.9;
+    }
+}
+
+/* Hide desktop hint on mobile as we have the arrow hint there */
+@media (max-width: 1024px) {
+    .hover-hint {
+        display: none;
+    }
+}
+
+.reels-container {
+    position: relative;
+    /* Anchor for absolute hint */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    /* Overlap handled by transforms */
+    perspective: 1200px;
+    padding: 4rem 4rem 5rem 4rem;
+    /* Bottom padding increased for hint */
+    width: 100%;
+    max-width: 820px;
+    /* NARROWED: Restores right margin for 3-mobile section */
+    margin: 0 auto;
+    height: 700px;
+
+    /* CLEAR GLASS FRAME (Optimized for Grid Visibility) */
+    background: rgba(100, 100, 100, 0.08);
+    /* Minimal opacity */
+    backdrop-filter: blur(1px);
+    /* Near-zero blur to keep grid SHARP */
+    -webkit-backdrop-filter: blur(1px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.reel-card {
+    width: 250px;
+    /* Reduced from 280px */
+    height: 500px;
+    /* Reduced from 560px */
+    /* Taller 9:18 ratio roughly */
+    background: #000;
+    border-radius: 36px;
+    /* Phone curvature */
+    overflow: hidden;
+    position: relative;
+    /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); Reduced shadow spread - Disabled for perf test */
+    /* Reduced shadow spread */
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 10px solid #121212;
+    /* Phone Bezel */
+    display: flex;
+    flex-direction: column;
+    background-clip: padding-box;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* FIX: Force corner clipping during 3D transforms */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    transform-style: preserve-3d;
+}
+
+/* Scoped Cursor Visibility: Hide default mouse ONLY when custom cursor is active */
+.reel-card.is-hovering {
+    cursor: none !important;
+}
+
+/* Phone Notch */
+.reel-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 24px;
+    background: #121212;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    z-index: 5;
+}
+
+/* 3D Layout */
+.reel-card:nth-child(1) {
+    transform: translateX(40px) scale(0.9) rotateY(15deg);
+    z-index: 1;
+    /* Removed expensive filter: brightness(0.9); - using overlay instead */
+}
+
+.reel-card:nth-child(2) {
+    transform: translateZ(50px);
+    z-index: 10;
+    /* box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); */
+    /* Optimized shadow spread */
+}
+
+.reel-card:nth-child(3) {
+    transform: translateX(-40px) scale(0.9) rotateY(-15deg);
+    z-index: 1;
+    /* Removed expensive filter: brightness(0.9); - using overlay instead */
+}
+
+.reel-card:hover {
+    transform: translateZ(80px) scale(1.05) !important;
+    /* Bring to front on hover */
+    z-index: 20;
+    /* Removed expensive filter: brightness(1); */
+    /* box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6); Optimized hover shadow - Disabled for perf test */
+    /* Optimized hover shadow */
+}
+
+/* Reel content */
+.reel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: inherit;
+    /* Ensure video respects card corners */
+}
+
+/* Loading Overlay */
+.reel-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Reel UI Overlay */
+.reel-ui-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, transparent 15%, transparent 60%, rgba(0, 0, 0, 0.9) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+    /* Let clicks pass through for video mostly, but we might want interactive buttons later */
+}
+
+/* Top Bar */
+.reel-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 45px 15px 0 15px;
+    width: 100%;
+}
+
+.reels-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.top-icon {
+    color: #fff;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    stroke-width: 2px;
+}
+
+/* Right Actions */
+.reel-right-actions {
+    position: absolute;
+    right: 12px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    z-index: 10;
+}
+
+.action-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.action-icon {
+    color: #fff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    stroke-width: 2px;
+    /* transition: transform 0.2s; */
+}
+
+/* .action-group:hover .action-icon {
+    transform: scale(1.1);
+} */
+
+.action-text {
+    font-size: 0.8rem;
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.spacer {
+    height: 10px;
+}
+
+.album-art-small {
+    width: 26px;
+    height: 26px;
+    background: #eee;
+    /* placeholder for album art */
+    border-radius: 4px;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    background-image: url('https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=100&auto=format&fit=crop');
+    background-size: cover;
+}
+
+/* Bottom Info */
+.reel-bottom-info {
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
+    right: 60px;
+    /* Space for right actions */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    z-index: 10;
+}
+
+.user-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.user-avatar-small {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    object-fit: contain;
+    padding: 0px;
+}
+
+.username {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.follow-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+}
+
+.caption-line {
+    font-size: 0.9rem;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.caption-more {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+}
+
+
+
+.audio-line {
+    font-size: 0.8rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.audio-line svg {
+    flex-shrink: 0;
+}
+
+.audio-ticker {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+/* 14-INCH LAPTOP OPTIMIZATION (Cinematic Proportions) */
+/* Small Laptops (769px to 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .project-showcase {
+        justify-content: center;
+        align-items: stretch;
+        gap: 2rem;
+    }
+
+    .reels-container {
+        max-width: 700px;
+        padding: 3rem 2rem;
+    }
+
+    .reel-card {
+        width: 220px;
+        height: 440px;
+    }
+
+    .project-info {
+        flex: 0 0 400px;
+    }
+
+    .projects-header {
+        max-width: 90%;
+    }
+}
+
+/* Medium/Large Laptops & Desktops (1025px to 1200px) */
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+    .project-showcase {
+        justify-content: center;
+        align-items: stretch;
+        gap: 3rem;
+    }
+
+    .reels-container {
+        max-width: 800px;
+        padding: 4rem 2.5rem;
+    }
+
+    .reel-card {
+        width: 240px;
+        height: 480px;
+    }
+
+    .project-info {
+        flex: 0 0 450px;
+    }
+}
+
+/* Extra Large Screens (1201px and up) */
+@media screen and (min-width: 1201px) {
+    .project-showcase {
+        justify-content: center;
+        align-items: stretch;
+        gap: 5rem;
+    }
+
+    .reels-container {
+        max-width: 1000px;
+        /* Generous width */
+        padding: 5rem 4rem;
+    }
+
+    .reel-card {
+        width: 260px;
+        height: 520px;
+    }
+
+    .project-info {
+        flex: 0 0 550px;
+    }
+
+    .projects-header {
+        max-width: 1600px;
+    }
+}
+
+/* Tablet & Mobile Layout (Final Visual Corrections) */
+@media (max-width: 900px) {
+    .projects-container {
+        padding: 3rem 1.5rem 1rem;
+        /* Reduced bottom padding from 4rem */
+    }
+
+    .reels-container {
+        min-height: auto;
+        height: auto;
+    }
+
+    .project-showcase {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        overflow: visible;
+        margin-bottom: -2rem;
+        /* Pull next project up to minimize gap */
+    }
+
+    .projects-header {
+        position: relative;
+        z-index: 100;
+        pointer-events: auto;
+        gap: 1.5rem;
+        /* Slightly reduced from 2rem to move tags up */
+        margin-bottom: -4.5rem;
+        /* Shifted down from -6rem */
+    }
+
+    /* 1. HEADING FIX: Balanced Size */
+    .featured-work-title {
+        /* font-size handled by clamp() */
+        line-height: 1;
+        display: inline-block;
+    }
+
+    .serif-highlight {
+        /* font-size handled by clamp() */
+        margin-left: 8px;
+    }
+
+    /* 2. FILTER TAGS: Compact & Centered */
+    .projects-filter {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .filter-btn {
+        font-size: 0.75rem;
+        padding: 0.4rem 1rem;
+    }
+
+    /* 3. VISUAL (Centered, Stacked) */
+    .project-visual {
+        order: 1;
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        /* Removed gap */
+        height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        /* Subtle Entry Animation */
+        animation: mobileLift 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        opacity: 0;
+        animation-delay: 0.1s;
+
+        position: relative;
+        z-index: 20;
+        /* CRITICAL: Ensure visual stays above text info to allow clicks */
+    }
+
+    /* 4. TEXT INFO (Left Aligned) */
+    .project-info {
+        order: 2;
+        flex: 0 0 auto;
+        width: 100%;
+        text-align: left;
+        align-items: flex-start;
+        padding: 0 0.5rem 1rem;
+        /* Reduced from 5rem buffer */
+        position: relative;
+        z-index: 2;
+        /* Lower than visual to prevent click blocking */
+    }
+
+    /* TYPOGRAPHY HIERARCHY - Scaled Down for Mobile */
+    .project-title {
+        font-size: 1.8rem;
+        /* Reduced from 2.5rem for better fit */
+        line-height: 1;
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .project-date {
+        font-size: 0.8rem;
+        /* Reduced from 0.9rem */
+        color: #555;
+        margin-top: -1.20rem;
+        /* Aggressive shift upward */
+        margin-bottom: -0.75rem;
+        /* Very tight pull for tags */
+        font-weight: 500;
+        width: 100%;
+        display: block;
+    }
+
+    /* 5. PROJECT TAGS: Wrapped Layout */
+    .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        /* Changed to wrap */
+        justify-content: flex-start;
+        gap: 0.5rem;
+        /* Increased gap for wrapped lines */
+        width: 100%;
+        margin-bottom: -0.25rem;
+        /* Negative margin to pull description up */
+        overflow-x: visible;
+        /* Removed scroll */
+        padding-bottom: 0;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .project-tags::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tag {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.7rem;
+    }
+
+    /* DESCRIPTION */
+    .project-description {
+        text-align: left;
+        font-size: 0.9rem;
+        /* Reduced from 1rem */
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    /* Paragraph Spacing for Mobile Descriptions */
+    .project-description p {
+        margin-top: 0.75rem;
+        /* Decreased "new paragraph" gap as requested */
+        margin-bottom: 0;
+    }
+
+    .project-description p:first-child {
+        margin-top: 0;
+    }
+
+    /* 3D PHONE STACK */
+    .reels-container {
+        flex-direction: row;
+        gap: 0;
+        perspective: 1000px;
+        width: 100%;
+        padding: 0;
+        transform: scale(0.65);
+        transform-origin: center center;
+        margin: 0;
+    }
+
+    .reel-card {
+        width: 200px;
+        height: 400px;
+        flex-shrink: 0;
+        margin: 0;
+        transform-style: preserve-3d;
+    }
+
+    .reel-card:nth-child(1) {
+        transform: translateX(60px) scale(0.85) rotateY(15deg) !important;
+        z-index: 1;
+    }
+
+    .reel-card:nth-child(2) {
+        transform: translateZ(80px) !important;
+        z-index: 10;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .reel-card:nth-child(3) {
+        transform: translateX(-60px) scale(0.85) rotateY(-15deg) !important;
+        z-index: 1;
+    }
+}
+
+/* Mobile Specific Adjustments */
+@media (max-width: 768px) {
+    .projects-container {
+        padding: 2rem 1.2rem 0.5rem;
+        /* Tighter phone padding */
+    }
+
+
+
+    .reels-container {
+        transform: scale(0.48);
+        /* Reduced from 0.52 to fit inside frame */
+        backdrop-filter: blur(1px);
+        /* Sharp grid visibility */
+        border-radius: 35px;
+        /* Normalized curvature */
+        padding: 0;
+        /* Tight Canvas for compacted phones */
+        width: 208%;
+        /* Adjusted for scale(0.48): 1/0.48 ≈ 2.08 */
+        max-width: none;
+        height: 660px;
+        /* Reduced height as requested */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Compacting Phones for Mobile to allow larger scale */
+    .reels-container .reel-card:nth-child(1) {
+        transform: translateX(100px) scale(0.85) rotateY(15deg) !important;
+        /* Reduced translate and scale */
+        z-index: 1;
+    }
+
+    .reels-container .reel-card:nth-child(2) {
+        /* Explicitly targeting center card to reduce it too if needed,
+            but usually it's just z-translate. Let's scale it slightly down optionally?
+            No, let's keep it standard but maybe standard scale is 1.
+            User said "reduce size of these 3 mobile screens". */
+        transform: translateZ(80px) scale(0.95) !important;
+        /* Added scale(0.95) to shrink center phone slightly too */
+    }
+
+    .reels-container .reel-card:nth-child(3) {
+        transform: translateX(-100px) scale(0.85) rotateY(-15deg) !important;
+        z-index: 1;
+    }
+
+    .project-visual {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        height: 400px !important;
+        /* Increased to fit larger scaled frame */
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+        overflow: visible;
+        order: 1;
+        /* Visual First on Mobile for all */
+    }
+
+
+
+    .projects-header {
+        margin-bottom: -6rem;
+        /* Shifted down from -7.5rem */
+    }
+
+    .project-info {
+        margin-top: -9.0rem;
+        /* Unified tight gap */
+        padding-bottom: 2rem;
+        /* Reduced buffer for next section visibility */
+        order: 2;
+        /* Text Second on Mobile for all */
+        width: 100%;
+    }
+
+    .project-title {
+        font-size: 2rem;
+    }
+
+    /* SPECIFIC FIX FOR CEREBRUM PROJECT & WHITFORD */
+    #cerebrum-project .project-showcase,
+    #whitford-project .project-showcase {
+        margin-bottom: -2rem !important;
+        /* Keep gap reset to prevent next section overlap */
+        gap: 0.5rem !important;
+        /* Match generic mobile gap (lines 502) */
+        flex-direction: column;
+        margin-top: -3rem !important;
+        /* Pull up to minimize gap with Hyatt body */
+    }
+
+    #cerebrum-project .project-info {
+        order: 2;
+        /* Text Second */
+        margin-top: -9.0rem !important;
+        /* Unified with Hyatt & Whitford */
+        padding-bottom: 5rem;
+        /* Buffer for next section */
+    }
+
+    #cerebrum-project .project-visual {
+        order: 1;
+        /* Visual (Phones) First */
+        height: 400px !important;
+        /* Match Hyatt's fixed height for consistent spacing */
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    /* Transparent Orange Frame for Cerebrum */
+    #cerebrum-project .reels-container {
+        background: rgba(255, 140, 0, 0.15) !important;
+        /* Transparent Orange as requested */
+        border: 1px solid rgba(255, 140, 0, 0.1);
+        /* Subtle orange tint border */
+    }
+
+    /* SPECIFIC FIX FOR WHITFORD PROJECT - Consistent Gap */
+    #whitford-project {
+        padding-top: 0 !important;
+        margin-top: -5rem !important;
+        /* Pull up section to close gap with previous */
+    }
+
+    #whitford-project .project-info {
+        order: 2;
+        /* Text Second */
+        margin-top: -9.0rem !important;
+        /* Match Cerebrum & Hyatt Gap */
+        padding-bottom: 4rem;
+        /* Buffer for next section */
+    }
+
+    #whitford-project .project-visual {
+        order: 1;
+        /* Visual First */
+        height: 400px !important;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    /* Transparent Indigo Frame for Whitford */
+    #whitford-project .reels-container {
+        background: rgba(75, 0, 130, 0.15) !important;
+        /* Transparent Indigo as requested */
+        border: 1px solid rgba(75, 0, 130, 0.1);
+        /* Subtle indigo tint border */
+    }
+}
+
+/* Subtle Vertical Lift Animation */
+@keyframes mobileLift {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Reel Modal Styles */
+.reel-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.reel-modal-content {
+    position: relative;
+    width: auto;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+.modal-phone-frame {
+    width: calc(90vh * 9 / 19);
+    /* Taller aspect ratio for modern phones */
+    height: 100%;
+    background: #000;
+    border-radius: 36px;
+    border: 8px solid #1a1a1a;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.modal-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Close Button */
+.close-modal-btn {
+    position: absolute;
+    top: -20px;
+    right: -60px;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.close-modal-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+    .modal-phone-frame {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        border: none;
+    }
+
+    .reel-modal-content {
+        width: 100%;
+        height: 100%;
+    }
+
+    .close-modal-btn {
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+    }
+}
+
+/* Play Button Overlay on Card */
+.play-button-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.play-icon {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 25px solid rgba(255, 255, 255, 0.9);
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Whitford Photo Grid Section */
+.whitford-grid-section {
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.grid-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.grid-header h4 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 3.5rem;
+    margin: 0;
+    font-weight: bold;
+    /* Bold as requested */
+    color: #1a1a1a;
+    font-style: italic;
+    /* The image 'Work' might be italic? No, it looks upright but Instrument Serif has a nice italic. Let's stick to normal first, or italic if requested. The image text looks upright. */
+}
+
+.grid-header p {
+    font-family: 'Inter', sans-serif;
+    color: #666;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+.whitford-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.grid-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    /* 4:5 Portrait Ratio */
+    overflow: hidden;
+    /* border-radius: 12px; */
+    /* Optional: if they want rounded corners */
+    cursor: pointer;
+}
+
+.grid-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.grid-item:hover .grid-image {
+    transform: none;
+}
+
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.grid-item:hover .grid-overlay {
+    opacity: 1;
+}
+
+/* Social Grid Card - Frame Layout */
+.social-grid-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /* Subtle shadow for depth */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* .social-grid-card:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    z-index: 10;
+} */
+
+.social-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    height: 48px;
+    /* Fixed height for header */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mini-avatar-img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: contain;
+    /* Since the logo might have a white background */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mini-username-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Ensure the grid-item inside the card maintains aspect ratio */
+.social-grid-card .grid-item {
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    border-radius: 0;
+    /* Remove radius from image container as card handles it */
+}
+
+.social-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    height: 44px;
+}
+
+.footer-left {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-left svg,
+.social-card-footer svg {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.footer-left svg:hover,
+.social-card-footer svg:hover {
+    color: #1a1a1a;
+}
+
+#whitford-project {
+    padding-top: 2rem;
+}
+
+@media (max-width: 599px) {
+    .whitford-photo-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .grid-header h4 {
+        font-size: 2.2rem;
+    }
+
+    .whitford-grid-section {
+        margin-top: 1rem;
+        gap: 1.5rem;
+        padding: 0 1.2rem 4rem;
+    }
+}
+
+@media (max-width: 599px) {
+
+    /* Safety: Force visibility for all project animations on mobile */
+    .project-info,
+    .project-visual,
+    .whitford-grid-section,
+    .social-grid-card,
+    .personal-project-container,
+    .event-project-section,
+    .party-group,
+    .pp-col,
+    .pp-title,
+    .pp-subtitle,
+    .pp-title-main,
+    .pp-title-sub,
+    .pp-text-block,
+    .gallery-scroll-container {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+    }
+}
+
+/* Carousel Arrows in AutoScrollGrid */
+.carousel-arrow-left,
+.carousel-arrow-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.carousel-arrow-left {
+    left: 10px;
+}
+
+.carousel-arrow-right {
+    right: 10px;
+}
+
+/* Show on hover for desktop */
+.grid-item:hover .carousel-arrow-left,
+.grid-item:hover .carousel-arrow-right {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Always show on mobile/tablet */
+@media (max-width: 900px) {
+
+    .carousel-arrow-left,
+    .carousel-arrow-right {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        background-color: rgba(0, 0, 0, 0.6);
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Mobile Hint Overlay */
+.mobile-hint-overlay {
+    display: none;
+    position: absolute;
+    top: -40px;
+    right: 15%;
+    z-index: 100;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.5));
+}
+
+.hint-arrow-img {
+    width: 75px;
+    height: auto;
+    transform: rotate(10deg);
+    opacity: 0.95;
+    filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.4));
+}
+
+.hint-text {
+    position: absolute;
+    top: 5px;
+    right: -105px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #111;
+    white-space: nowrap;
+    letter-spacing: 0px;
+}
+
+@media (max-width: 1199px) {
+    .mobile-hint-overlay {
+        display: block;
+    }
+}
+
+@media (max-width: 599px) {
+    .mobile-hint-overlay {
+        /* Exact placement to point at top-right corner of center phone - Shifted up */
+        top: 140px;
+        right: 100px;
+    }
+
+    .hint-arrow-img {
+        width: 70px;
+        transform: rotate(-15deg);
+
+    }
+
+    .hint-text {
+        font-size: 1rem;
+        right: -90px;
+        top: 9px;
+        /* Aligned with arrow tail */
+    }
+}
+
+/* Dynamic Scaling for Smaller Mobiles */
+@media (max-width: 410px) {
+    .reels-container {
+        transform: scale(0.48);
+        width: 208%;
+        /* 1 / 0.48 */
+    }
+}
+
+/* =========================================
+   SPECIFIC MOBILE BREAKPOINTS (Refined)
+   ========================================= */
+
+/* 1. Large Mobile (Max: 430px - e.g., iPhone Pro Max, Samsung Ultra) */
+@media screen and (max-width: 430px) {
+    .projects-container {
+        padding: 2rem 1rem 4rem;
+    }
+
+    /* Dual Video Showcase */
+    .dual-showcase-section {
+        padding-bottom: 4rem !important;
+        margin-top: -4rem !important;
+    }
+
+    .dual-showcase-container {
+        gap: 1.5rem !important;
+    }
+
+    .mobile-nav-overlay .nav-cta-btn {
+        transform: scale(1.4);
+    }
+
+
+    /* Add gaps between projects */
+    #cerebrum-project,
+    #whitford-project {
+        margin-top: 3rem !important;
+        padding-top: 0 !important;
+
+    }
+
+    #cerebrum-project .project-showcase,
+    #whitford-project .project-showcase {
+        margin-top: 0 !important;
+        padding-top: 2rem !important;
+    }
+
+    .projects-filter {
+        max-width: 400px;
+        /* Allow wider spread on large mobiles */
+        gap: 0.6rem;
+        padding-bottom: 50px;
+    }
+
+    .project-showcase {
+        gap: 0.5rem;
+        /* Maintain tight gap */
+        margin-bottom: -2rem;
+        padding-top: 50px;
+    }
+
+    .reels-container {
+        transform: scale(0.48);
+        width: 204%;
+        max-width: none;
+        flex-shrink: 0;
+    }
+
+    .reel-card {
+        width: 300px;
+        height: 600px;
+    }
+
+    .project-visual,
+    #cerebrum-project .project-visual,
+    #whitford-project .project-visual {
+        height: 420px !important;
+    }
+
+    .project-info,
+    #cerebrum-project .project-info,
+    #whitford-project .project-info {
+        margin-top: -1.5rem !important;
+    }
+
+    /* Adjust Hint for 0.48 scale */
+    .mobile-hint-overlay,
+    #cerebrum-project .mobile-hint-overlay,
+    #whitford-project .mobile-hint-overlay {
+        top: 20px !important;
+        /* Matches user preference */
+        right: 30% !important;
+    }
+
+    .featured-work-title,
+    .serif-highlight {
+        font-size: 2.2rem;
+    }
+
+}
+
+/* 2. Premium Mobile (Max: 390px - e.g., iPhone 14/15/16) */
+@media screen and (max-width: 390px) {
+    .projects-container {
+        padding: 1.8rem 0.9rem 3.6rem;
+    }
+
+    .dual-showcase-section {
+        padding-bottom: 3.6rem !important;
+        margin-top: -3.6rem !important;
+    }
+
+    .dual-showcase-container {
+        gap: 1.3rem !important;
+    }
+
+    .mobile-nav-overlay .nav-cta-btn {
+        transform: scale(1.32);
+    }
+
+    #cerebrum-project,
+    #whitford-project {
+        margin-top: 2.7rem !important;
+    }
+
+    .projects-filter {
+        max-width: 360px;
+        gap: 0.55rem;
+        padding-bottom: 44px;
+    }
+
+    .project-showcase {
+        gap: 0.45rem;
+        margin-bottom: -1.8rem;
+        padding-top: 44px;
+    }
+
+    .reels-container {
+        transform: scale(0.44);
+        /* ↓ from 0.48 */
+        width: 212%;
+    }
+
+    .reel-card {
+        width: 280px;
+        height: 560px;
+    }
+
+    .project-visual,
+    #cerebrum-project .project-visual,
+    #whitford-project .project-visual {
+        height: 390px !important;
+    }
+
+    .project-info {
+        margin-top: -1.3rem !important;
+    }
+
+    .mobile-hint-overlay {
+        top: 18px !important;
+        right: 28% !important;
+    }
+
+    .featured-work-title,
+    .serif-highlight {
+        font-size: 2.05rem;
+    }
+}
+
+/* 3. Standard Mobile (Max: 360px - e.g., Mid-range Android) */
+@media screen and (max-width: 360px) {
+    .projects-container {
+        padding: 1.6rem 0.8rem 3.2rem;
+    }
+
+    .dual-showcase-section {
+        padding-bottom: 3.2rem !important;
+        margin-top: -3.2rem !important;
+    }
+
+    .dual-showcase-container {
+        gap: 1.1rem !important;
+    }
+
+    .mobile-nav-overlay .nav-cta-btn {
+        transform: scale(1.24);
+    }
+
+    .projects-filter {
+        max-width: 330px;
+        gap: 0.5rem;
+        padding-bottom: 60px;
+    }
+
+    .project-showcase {
+        gap: 0.4rem;
+        margin-bottom: -1.6rem;
+        padding-top: 60px;
+    }
+
+    .reels-container {
+        transform: scale(0.40);
+        width: 245%;
+        height: 200%;
+    }
+
+    #cerebrum-project .reels-container,
+    #whitford-project .reels-container {
+        transform: scale(0.40);
+        width: 245%;
+        height: 190%;
+    }
+
+    .reel-card {
+        width: 300px;
+        height: 600px;
+    }
+
+    .project-visual {
+        height: 360px !important;
+    }
+
+    .project-info {
+        margin-top: -1.2rem !important;
+    }
+
+    .mobile-hint-overlay {
+        top: 2px !important;
+        right: 33% !important;
+    }
+
+
+    #cerebrum-project .mobile-hint-overlay,
+    #whitford-project .mobile-hint-overlay {
+        top: 17px !important;
+        right: 33% !important;
+    }
+
+    .featured-work-title,
+    .serif-highlight {
+        font-size: 1.9rem;
+    }
+}
+
+/* 4. Small Mobile (Max: 320px - e.g., iPhone SE, Older Androids) */
+@media screen and (max-width: 320px) {
+    .projects-container {
+        padding: 1.4rem 0.6rem 2.8rem;
+    }
+
+    .dual-showcase-section {
+        padding-bottom: 2.8rem !important;
+        margin-top: -2.8rem !important;
+    }
+
+    .dual-showcase-container {
+        gap: 1rem !important;
+    }
+
+    .mobile-nav-overlay .nav-cta-btn {
+        transform: scale(1.16);
+    }
+
+    .projects-filter {
+        max-width: 300px;
+        gap: 0.45rem;
+        padding-bottom: 36px;
+    }
+
+    .project-showcase {
+        gap: 0.35rem;
+        margin-bottom: -1.4rem;
+        padding-top: 36px;
+    }
+
+    .reels-container {
+        transform: scale(0.36);
+        width: 240%;
+    }
+
+    .reel-card {
+        width: 240px;
+        height: 480px;
+    }
+
+    .project-visual {
+        height: 320px !important;
+    }
+
+    .project-info {
+        margin-top: -1rem !important;
+    }
+
+    .mobile-hint-overlay {
+        top: 14px !important;
+        right: 24% !important;
+    }
+
+    .featured-work-title,
+    .serif-highlight {
+        font-size: 1.7rem;
+    }
+}
+
+/* =========================================
+   SPECIFIC TABLET BREAKPOINTS
+   ========================================= */
+
+/* 1. Small Tablet / Large Phone Landscape */
+@media screen and (min-width: 600px) and (max-width: 767px) {
+
+    .hero-container {
+        width: 92%;
+        margin: 4%;
+    }
+
+    .floating-layer {
+        top: 20px;
+        left: 20px;
+    }
+
+    .software-container {
+        height: 60vh;
+        min-height: none;
+    }
+
+    .adobe-icon,
+    .software-img {
+        width: 40px;
+    }
+
+    .project-showcase {
+        padding-top: 60px;
+    }
+
+    .projects-header {
+        padding-bottom: 60px;
+    }
+
+    .social-text,
+    .media-design-text {
+        font-size: 3.2rem;
+    }
+
+    .software-label h3 {
+        font-size: 2.0rem;
+    }
+
+
+    .project-info,
+    #cerebrum-project .project-info,
+    #whitford-project .project-info {
+        margin-top: 0.5rem !important;
+    }
+
+    .reels-container {
+        height: 800px;
+        width: 1160px;
+        flex-shrink: 0;
+    }
+
+    .mobile-hint-overlay {
+        top: -25px;
+        right: 108px;
+    }
+
+    .reel-card {
+        width: 330px;
+        height: 660px;
+    }
+
+    .dual-showcase-section {
+        margin-top: -9rem !important;
+    }
+
+    .social-grid-card {
+        /* margin: 46px; */
+        align-items: center;
+        justify-self: anchor-center;
+        padding: -25px;
+        /* width: 400px; */
+        /* height: 500px; */
+    }
+
+    /* .get-in-touch {
+        margin: 10px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    } */
+
+    .hint-arrow-img {
+        transform: rotate(-15deg);
+    }
+
+}
+
+/* 2. Portrait Tablet */
+@media screen and (min-width: 768px) and (max-width: 899px) {
+
+    .hero-container {
+        width: 94%;
+        margin: 3%;
+    }
+
+    .floating-layer {
+        top: 25px;
+        left: 30px;
+    }
+
+    .software-container {
+        height: 65vh;
+    }
+
+    .adobe-icon,
+    .software-img {
+        width: 46px;
+    }
+
+    .project-showcase {
+        padding-top: 100px;
+    }
+
+    #whitford-project .project-showcase {
+        padding-top: 200px;
+    }
+
+    .projects-header {
+        padding-bottom: 100px;
+    }
+
+    .social-text,
+    .media-design-text {
+        font-size: 3.6rem;
+    }
+
+    .software-label h3 {
+        font-size: 2.2rem;
+    }
+
+    .project-info,
+    #cerebrum-project .project-info,
+    #whitford-project .project-info {
+        margin-top: 6.7rem !important;
+    }
+
+    .reels-container {
+        height: 860px;
+        width: 1150px;
+        max-width: none;
+        min-width: none;
+        flex-shrink: 0;
+    }
+
+    .mobile-hint-overlay {
+        top: -125px;
+        right: 130px;
+    }
+
+    .hint-text {
+        font-size: 1.2rem;
+        font-weight: 500;
+        top: 10px;
+    }
+
+    .reel-card {
+        width: 350px;
+        height: 700px;
+    }
+
+    /* .dual-showcase-section {
+        margin-top: -8rem !important;
+    } */
+
+    .social-grid-card {
+        align-items: center;
+        justify-self: center;
+    }
+
+    .hint-arrow-img {
+        transform: rotate(-12deg);
+    }
+}
+
+
+/* 3. Landscape Tablet / Small Laptop */
+@media screen and (min-width: 900px) and (max-width: 1024px) {
+
+    .hero-container {
+        width: 96%;
+        margin: 2%;
+    }
+
+    .floating-layer {
+        top: 30px;
+        left: 30px;
+    }
+
+    .software-container {
+        height: 70vh;
+    }
+
+    .adobe-icon,
+    .software-img {
+        width: 52px;
+    }
+
+    .project-showcase {
+        padding-top: 80px;
+    }
+
+    .projects-header {
+        padding-bottom: 80px;
+    }
+
+    .social-text,
+    .media-design-text {
+        font-size: 3.9rem;
+    }
+
+    .software-label h3 {
+        font-size: 2.4rem;
+    }
+
+    .reels-container {
+        height: 900px;
+        width: 1300px;
+    }
+
+    .mobile-hint-overlay {
+        top: -32px;
+        right: 140px;
+    }
+
+    .reel-card {
+        width: 370px;
+        height: 720px;
+    }
+
+    .dual-showcase-section {
+        margin-top: -7rem !important;
+    }
+
+    .hint-arrow-img {
+        transform: rotate(-10deg);
+    }
+}
+
+
+/* 4. Large Tablet / Laptop */
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+
+    .hero-container {
+        width: 97%;
+        margin: 1.5%;
+    }
+
+    .floating-layer {
+        top: 35px;
+        left: 35px;
+    }
+
+    .software-container {
+        height: 72vh;
+    }
+
+    .adobe-icon,
+    .software-img {
+        width: 56px;
+    }
+
+    .project-showcase {
+        padding-top: 90px;
+    }
+
+    .projects-header {
+        padding-bottom: 90px;
+    }
+
+    .social-text,
+    .media-design-text {
+        font-size: 4.1rem;
+    }
+
+    .software-label h3 {
+        font-size: 2.6rem;
+    }
+
+    .reels-container {
+        height: 940px;
+        width: 1380px;
+    }
+
+    .mobile-hint-overlay {
+        top: -35px;
+        right: 160px;
+    }
+
+    .reel-card {
+        width: 390px;
+        height: 740px;
+    }
+
+    .dual-showcase-section {
+        margin-top: -6rem !important;
+    }
+
+    .hint-arrow-img {
+        transform: rotate(-8deg);
+    }
+}

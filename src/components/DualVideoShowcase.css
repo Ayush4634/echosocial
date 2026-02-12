@@ -1,0 +1,375 @@
+/* DualVideoShowcase.css */
+.dual-showcase-section {
+    width: 100%;
+    padding: 3% 5% 16rem;
+    margin-top: -3rem;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.dual-showcase-container {
+    width: 100%;
+    max-width: 1400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+/* responsive stacking */
+/* Enforce vertical stack on mobile/tablet */
+@media (max-width: 1024px) {
+    .dual-showcase-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+}
+
+/* Specific Mobile/Tablet spacing to avoid conflict with 600-767px range in Projects.css */
+@media (max-width: 599px) {
+    .dual-showcase-section {
+        padding-bottom: 6rem;
+        margin-top: -1rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .dual-showcase-section {
+        padding-bottom: 6rem;
+        margin-top: -1rem;
+    }
+}
+
+/* MacOS Window Frame */
+.macos-window {
+    width: 100%;
+    background: #000;
+    border-radius: 16px;
+    /* Optimized shadow: Very simple shadow to reduce composite cost */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.4s ease;
+    /* Default cursor is handled by container */
+}
+
+.macos-window:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 25px 60px -10px rgba(0, 0, 0, 0.2),
+        0 15px 30px -5px rgba(0, 0, 0, 0.15);
+}
+
+/* Top Bar: Dark Mode */
+.window-bar {
+    width: 100%;
+    height: 36px;
+    background: #1e1e1e;
+    /* Dark MacOS gray */
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 8px;
+    position: relative;
+    z-index: 10;
+}
+
+.window-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.window-dot.red {
+    background-color: #FF5F56;
+    border: 1px solid #E0443E;
+}
+
+.window-dot.yellow {
+    background-color: #FFBD2E;
+    border: 1px solid #DEA123;
+}
+
+.window-dot.green {
+    background-color: #27C93F;
+    border: 1px solid #1AAB29;
+}
+
+/* Video Area */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    /* Standard landscape */
+    background: #000;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.showcase-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* --- Cinematic Controls Overlay --- */
+
+.video-controls-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Glass Control Bar area */
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 20;
+}
+
+/* Show controls on hover or if paused (optional UX choice, sticking to user req: hover) */
+.video-wrapper:hover .video-controls-overlay,
+.video-controls-overlay:hover {
+    opacity: 1;
+}
+
+/* Glass Bar Container */
+.glass-control-bar {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.85);
+    /* Removed backdrop-filter for performance over video */
+    /* backdrop-filter: blur(12px); */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 1. Timeline (Top of bar) */
+.timeline-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 14px;
+    /* Hit area */
+}
+
+/* Custom Range Input for Timeline */
+.cinematic-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    transition: height 0.1s ease;
+}
+
+.cinematic-range:hover {
+    height: 5px;
+}
+
+/* Thumb (Handle) - initially hidden or small? User asked for scrub handle. */
+.cinematic-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #f00;
+    /* Red accent or white? User said "Red or accent-colored progress" */
+    background: #ff0000;
+    cursor: pointer;
+    margin-top: -3.5px;
+    /* Centers thumb on 5px track */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.1s;
+}
+
+.cinematic-range:hover::-webkit-slider-thumb {
+    transform: scale(1.2);
+}
+
+/* Firefox support omitted for brevity unless needed */
+
+/* 2. Controls Row (Buttons) */
+.controls-main-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+}
+
+.controls-left,
+.controls-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Buttons */
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, transform 0.1s;
+}
+
+.icon-btn:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* Time Display */
+.time-display {
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    color: rgba(255, 255, 255, 0.7);
+    font-variant-numeric: tabular-nums;
+    margin-left: 4px;
+    font-weight: 500;
+}
+
+/* Volume Container */
+.volume-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.volume-slider-wrapper {
+    width: 0;
+    overflow: hidden;
+    transition: width 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.volume-container:hover .volume-slider-wrapper,
+.volume-slider-wrapper:hover {
+    width: 60px;
+    /* Reveal slider */
+}
+
+.volume-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    outline: none;
+}
+
+.volume-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+}
+
+/* Overlay Buttons (Fullscreen) - Top Right */
+.fullscreen-btn-container {
+    /* If user wants top right control overlay */
+    /* "Top Right Controls (Overlay)... Appears only on hover" */
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 25;
+}
+
+
+/* Hide smart cursor and fullscreen button on mobile/tablet */
+@media (max-width: 1024px) {
+
+    .smart-cursor,
+    .fullscreen-btn-container {
+        display: none !important;
+    }
+}
+
+.video-wrapper:hover .fullscreen-btn-container {
+    opacity: 1;
+}
+
+.overlay-btn {
+    background: rgba(0, 0, 0, 0.6);
+    /* backdrop-filter: blur(4px); */
+    border: none;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.overlay-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* --- Smart Cursor --- */
+/* --- Smart Cursor (Blue Badge Follower) --- */
+.video-frame-container {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    /* Show default pointer */
+}
+
+/* Scoped Cursor Visibility: Hide default mouse ONLY when custom cursor is active */
+.video-frame-container.is-hovering .macos-window {
+    cursor: none;
+}
+
+/* Handle Window Hover */
+.video-frame-container:hover .macos-window {
+    transform: translateY(-5px);
+    box-shadow:
+        0 25px 60px -10px rgba(0, 0, 0, 0.2),
+        0 15px 30px -5px rgba(0, 0, 0, 0.15);
+}
+
+/* Clean up old hover */
+.macos-window:hover {
+    transform: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Hide deprecated elements */
+.cursor-main-text,
+.cursor-hint,
+.hint-line {
+    display: none;
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 899px) {
+    .dual-showcase-section {
+        margin-top: -10rem !important;
+    }
+}

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echo Social | Under Development</title>
+    <!-- Add Google Fonts to match the design reference image -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Playfair+Display:ital@1&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Exact match from main website index.css */
+            --bg-color: #F6F3EB;
+            --text-color: #111111;
+            --accent-blue: #4D61FC;
+            --accent-red: #FF4438;
+            --font-main: 'Inter', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        /* BACKGROUND & ANIMATION */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        /* Fixed Background Wrapper */
+        .fixed-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image:
+                radial-gradient(circle at 50% 50%, rgba(246, 243, 235, 0) 0%, rgba(246, 243, 235, 0.8) 100%),
+                linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            animation: grid-move 2s linear infinite;
+        }
+
+        /* FLOATING DECORATIVE ELEMENTS - Fixed to Viewport */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        @keyframes grid-move {
+            0% {
+                background-position: center center, center center, 0px 0px;
+            }
+
+            100% {
+                background-position: center center, center center, 40px 0px;
+            }
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1400px;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            margin: auto;
+        }
+
+        /* LOGO SECTION */
+        .logo-container {
+            margin-bottom: 2rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-image {
+            max-width: 200px;
+            height: auto;
+        }
+
+        /* MAIN HEADLINE */
+        h1 {
+            font-family: var(--font-main);
+            font-weight: 700;
+            /* Fluid resizing: never smaller than 2rem, never larger than 4rem */
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            color: #000;
+        }
+
+        .serif-italic {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-weight: 400;
+            display: inline-block;
+            /* Allows spacing to work properly */
+        }
+
+        /* GEARS ANIMATION */
+        .gears-wrapper {
+            margin: 2rem 0;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gears-gif {
+            width: 300px;
+            /* Default Desktop */
+            height: auto;
+            display: block;
+        }
+
+        /* SUBTEXT - Fluid Typography */
+        .subtext {
+            font-size: clamp(1rem, 3vw, 1.35rem);
+            color: #222;
+            max-width: 700px;
+            margin: 2.5rem auto 4rem;
+            line-height: 1.5;
+            letter-spacing: -0.3px;
+        }
+
+        /* FOOTER INFO */
+        .footer-info {
+            width: 100%;
+            border-top: 2px solid rgba(0, 0, 0, 0.05);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .contact-group h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+
+        .contact-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: opacity 0.2s;
+        }
+
+        .contact-link:hover {
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+        }
+
+        /* Floats Animation */
+        .float-item {
+            position: absolute;
+            opacity: 0.5;
+        }
+
+        /* 1. Top Left */
+        .float-1 {
+            top: 10%;
+            left: 5%;
+            width: 70px;
+            height: 70px;
+            color: var(--accent-red);
+            animation: float-spin 10s linear infinite;
+        }
+
+        /* 2. Top Right */
+        .float-2 {
+            top: 15%;
+            right: 5%;
+            width: 90px;
+            height: 90px;
+            color: var(--accent-blue);
+            animation: float-circular 12s linear infinite;
+        }
+
+        /* 3. Bottom Left */
+        .float-3 {
+            bottom: 20%;
+            left: 3%;
+            width: 50px;
+            height: 50px;
+            color: #FFCC00;
+            animation: float-horizontal 10s ease-in-out infinite alternate;
+        }
+
+        /* 4. Bottom Right */
+        .float-4 {
+            bottom: 15%;
+            right: 3%;
+            width: 60px;
+            height: 60px;
+            color: #111;
+            opacity: 0.1;
+            animation: float-rotate-triangle 20s linear infinite;
+        }
+
+        @keyframes float-rotate-triangle {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes float-spin {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(360deg);
+            }
+        }
+
+        @keyframes float-horizontal {
+            0% {
+                transform: translateX(0px) rotate(0deg);
+            }
+
+            100% {
+                transform: translateX(40px) rotate(10deg);
+            }
+        }
+
+        @keyframes float-diagonal {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-30px, -30px);
+            }
+        }
+
+        @keyframes float-circular {
+            0% {
+                transform: rotate(0deg) translateX(10px) rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg) translateX(10px) rotate(-360deg);
+            }
+        }
+
+
+        /* --- MEDIA QUERIES (Flat Structure) --- */
+
+        /* Tablet (max-width: 1024px) */
+        @media (max-width: 1024px) {
+            .container {
+                width: 85%;
+                padding: 40px;
+            }
+
+            .gears-gif {
+                width: 250px;
+            }
+        }
+
+        /* Mobile (max-width: 768px) */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 30px 20px;
+                background: rgba(255, 255, 255, 0.9);
+                /* More opaque background for readability */
+                width: 92%;
+                max-width: 100%;
+                border-radius: 20px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .logo-image {
+                max-width: 220px;
+                /* CSS override */
+            }
+
+            h1 {
+                font-size: 2rem;
+                /* Reasonable mobile size */
+                line-height: 1.3;
+                margin-bottom: 1.5rem;
+                letter-spacing: 0.5px;
+            }
+
+            .serif-italic {
+                display: block;
+                margin-top: 0.2rem;
+                letter-spacing: 0px;
+            }
+
+            .subtext {
+                font-size: 1rem;
+                padding: 0 10px;
+                margin: 1.5rem auto 2rem;
+                line-height: 1.4;
+            }
+
+            .gears-gif {
+                width: 200px;
+            }
+
+            .footer-info {
+                flex-direction: column;
+                gap: 1.2rem;
+                padding-top: 1.5rem;
+                text-align: center;
+                align-items: center;
+            }
+
+            .contact-link {
+                font-size: 1rem;
+            }
+
+            .social-links {
+                gap: 15px;
+                justify-content: center;
+                width: 100%;
+            }
+
+            /* Adjusted Floats for Mobile */
+            .float-item {
+                opacity: 0.4;
+            }
+
+            .float-1 {
+                width: 40px;
+                height: 40px;
+                top: 2%;
+                left: 3%;
+            }
+
+            .float-2 {
+                width: 50px;
+                height: 50px;
+                top: 4%;
+                right: 3%;
+            }
+
+            .float-3 {
+                width: 35px;
+                height: 35px;
+                bottom: 3%;
+                left: 3%;
+            }
+
+            .float-4 {
+                width: 35px;
+                height: 35px;
+                bottom: 3%;
+                right: 3%;
+            }
+        }
+
+        /* Smaller Mobile (max-width: 480px) */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .logo-image {
+                max-width: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Fixed Background Layer -->
+    <div class="fixed-background"></div>
+
+    <!-- Floating Decoration Layer -->
+    <div class="floating-elements">
+        <!-- 1. Star (Vertical) -->
+        <svg class="float-item float-1" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+        </svg>
+
+        <!-- 2. Circle (Circular Orbit) -->
+        <svg class="float-item float-2" viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+
+        <!-- 3. Outline Rect (Horizontal) -->
+        <svg class="float-item float-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="4" />
+        </svg>
+
+        <!-- 4. Triangle (Diagonal) -->
+        <svg class="float-item float-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L2 22H22L12 2Z" />
+        </svg>
+    </div>
+
+    <!-- Content Container -->
+    <div class="container">
+        <!-- LOGO -->
+        <div class="logo-container">
+            <!-- Inline style removed, using class -->
+            <img src="echo_logo.png" alt="Echo Social Logo" class="logo-image">
+        </div>
+
+        <!-- HEADLINE -->
+        <h1>
+            The site is currently<br>
+            <span class="serif-italic">Under Development.</span>
+        </h1>
+
+        <!-- GEARS - GIF from Canva -->
+        <div class="gears-wrapper">
+            <img src="https://video-public.canva.com/VAFKG6c2weI/v/a72ffa6085.gif" alt="Rotating Gears"
+                class="gears-gif">
+        </div>
+
+        <!-- SUBTEXT -->
+        <p class="subtext">
+            We’re refining the experience.<br>
+            Something better is coming soon.
+        </p>
+
+        <!-- FOOTER -->
+        <div class="footer-info">
+            <div class="contact-group">
+                <h3>In the meantime, reach us at:</h3>
+                <a href="mailto:helloechosocial@gmail.com" class="contact-link">helloechosocial@gmail.com</a>
+            </div>
+
+            <div class="contact-group">
+                <h3>We're also on:</h3>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/ayushh.jpeg?igsh=MWNheXB4ejNrdTViZw==" target="_blank"
+                        class="contact-link">Instagram</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

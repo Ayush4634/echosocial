@@ -1,0 +1,48 @@
+.premium-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1a1a1a;
+    /* deep charcoal */
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    /* Pill shape */
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+    /* Initial width definition to allow expansion */
+    min-width: 160px;
+    transition: width 0.3s ease-in-out, background-color 0.3s ease;
+    /* Ensure no unexpected scaling */
+    transform: translateZ(0);
+}
+
+/* Hover state width expansion handled via CSS transition or framer-motion layout if preferred, 
+   but simplistic width transition works well for button expansion provided content doesn't jump.
+   Actually, utilizing motion.button's layout prop might be smoother, or just pure CSS width change.
+   Let's use a subtle width increase. */
+.premium-cta-btn:hover {
+    padding-right: 28px;
+    /* Subtle expansion feel via padding or width */
+    background-color: #000000;
+    /* Darker on hover */
+}
+
+.cta-text {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.cta-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+}
