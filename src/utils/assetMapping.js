@@ -30,7 +30,7 @@ export const ASSET_MAP = {
     "assets/personal/p_3.jpg": "p_3_iocyv9.jpg",
     "assets/personal/p_4.jpg": "p_4_arn6el.jpg",
     "assets/salim/3.jpg": "3_keuqse.jpg",
-    "assets/salim/5.heic": "5_aa8qqh.heic",
+    "assets/salim/5.jpg": "5_aa8qqh.heic",
     "assets/salim/4.jpg": "4_nd9nxx.jpg",
     "assets/salim/2.jpg": "2_xi3asl.jpg",
     "assets/salim/1.jpg": "1_m5cevj.jpg",
@@ -109,10 +109,10 @@ export const getAssetPath = (path) => {
     const cleanPath = path.startsWith('/') ? path.slice(1) : path;
     // Try exact match
     if (ASSET_MAP[cleanPath]) return ASSET_MAP[cleanPath];
-    
+
     // Try matching without leading assets/ if fails
     // (e.g. if code requests "personal/p_1.jpg" but key is "assets/personal/p_1.jpg" OR vice versa)
     // Actually, let's just stick to exact match first.
-    
+
     return null;
 };
